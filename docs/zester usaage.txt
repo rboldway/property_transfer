@@ -1,0 +1,48 @@
+=> #<Zester::Response:0x00007f81a8147338 @body=#<Hashie::Rash message=#<Hashie::Rash code="0" text="Request successfully processed"> request=#<Hashie::Rash address="123 Main Street" citystatezip="Boston, MA"> response=#<Hashie::Rash results=#<Hashie::Rash result=#<Hashie::Rash address=#<Hashie::Rash city="Boston" latitude="42.375354" longitude="-71.064524" state="MA" street="123 Main St" zipcode="02129"> bathrooms="18.0" bedrooms="9" finished_sq_ft="99999" fip_scounty=nil links=#<Hashie::Rash comparables="http://www.zillow.com/homes/comps/2126513888_zpid/" homedetails="https://www.zillow.com/homedetails/123-Main-St-Boston-MA-02129/2126513888_zpid/" mapthishome="http://www.zillow.com/homes/2126513888_zpid/"> local_real_estate=#<Hashie::Rash region=#<Hashie::Rash id="154235" links=#<Hashie::Rash for_sale="http://www.zillow.com/charlestown-boston-ma/" for_sale_by_owner="http://www.zillow.com/charlestown-boston-ma/fsbo/" overview="http://www.zillow.com/local-info/MA-Boston/Charlestown/r_154235/"> name="Charlestown" type="neighborhood" zindex_value="714,000">> lot_size_sq_ft="100188" use_code="SingleFamily" year_built="1900" zestimate=#<Hashie::Rash amount=#<Hashie::Rash _content_="1273901" currency="USD"> last_updated="07/19/2018" one_week_change=#<Hashie::Rash deprecated="true"> percentile="0" valuation_range=#<Hashie::Rash high=#<Hashie::Rash _content_="2420412" currency="USD"> low=#<Hashie::Rash _content_="764341" currency="USD">> value_change=#<Hashie::Rash _content_="16591" currency="USD" duration="30">> zpid="2126513888">>> schema_location="http://www.zillow.com/static/xsd/SearchResults.xsd https://www.zillowstatic.com/vstatic/b20c067/static/xsd/SearchResults.xsd">>
+>> response.url
+NoMethodError: undefined method `url' for #<Zester::Response:0x00007f81a8147338>
+	from /Users/richard/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/gems/zester-0.4.0/lib/zester/response.rb:34:in `method_missing'
+	from (irb):5
+	from -e:1:in `load'
+	from -e:1:in `<main>'
+>> response.success?
+=> true
+>> response.response_code
+=> 0
+>> response.address
+NoMethodError: undefined method `address' for #<Zester::Response:0x00007f81a8147338>
+	from /Users/richard/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/gems/zester-0.4.0/lib/zester/response.rb:34:in `method_missing'
+	from (irb):8
+	from -e:1:in `load'
+	from -e:1:in `<main>'
+>> response.response.address
+NoMethodError: undefined method `response' for #<Zester::Response:0x00007f81a8147338>
+Did you mean?  response_code
+	from /Users/richard/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/gems/zester-0.4.0/lib/zester/response.rb:34:in `method_missing'
+	from (irb):9
+	from -e:1:in `load'
+	from -e:1:in `<main>'
+>> response.body.response.address
+=> nil
+>> response.body.response
+=> #<Hashie::Rash results=#<Hashie::Rash result=#<Hashie::Rash address=#<Hashie::Rash city="Boston" latitude="42.375354" longitude="-71.064524" state="MA" street="123 Main St" zipcode="02129"> bathrooms="18.0" bedrooms="9" finished_sq_ft="99999" fip_scounty=nil links=#<Hashie::Rash comparables="http://www.zillow.com/homes/comps/2126513888_zpid/" homedetails="https://www.zillow.com/homedetails/123-Main-St-Boston-MA-02129/2126513888_zpid/" mapthishome="http://www.zillow.com/homes/2126513888_zpid/"> local_real_estate=#<Hashie::Rash region=#<Hashie::Rash id="154235" links=#<Hashie::Rash for_sale="http://www.zillow.com/charlestown-boston-ma/" for_sale_by_owner="http://www.zillow.com/charlestown-boston-ma/fsbo/" overview="http://www.zillow.com/local-info/MA-Boston/Charlestown/r_154235/"> name="Charlestown" type="neighborhood" zindex_value="714,000">> lot_size_sq_ft="100188" use_code="SingleFamily" year_built="1900" zestimate=#<Hashie::Rash amount=#<Hashie::Rash _content_="1273901" currency="USD"> last_updated="07/19/2018" one_week_change=#<Hashie::Rash deprecated="true"> percentile="0" valuation_range=#<Hashie::Rash high=#<Hashie::Rash _content_="2420412" currency="USD"> low=#<Hashie::Rash _content_="764341" currency="USD">> value_change=#<Hashie::Rash _content_="16591" currency="USD" duration="30">> zpid="2126513888">>>
+>> response.body.response.url
+=> nil
+>> response.body.response.results
+=> #<Hashie::Rash result=#<Hashie::Rash address=#<Hashie::Rash city="Boston" latitude="42.375354" longitude="-71.064524" state="MA" street="123 Main St" zipcode="02129"> bathrooms="18.0" bedrooms="9" finished_sq_ft="99999" fip_scounty=nil links=#<Hashie::Rash comparables="http://www.zillow.com/homes/comps/2126513888_zpid/" homedetails="https://www.zillow.com/homedetails/123-Main-St-Boston-MA-02129/2126513888_zpid/" mapthishome="http://www.zillow.com/homes/2126513888_zpid/"> local_real_estate=#<Hashie::Rash region=#<Hashie::Rash id="154235" links=#<Hashie::Rash for_sale="http://www.zillow.com/charlestown-boston-ma/" for_sale_by_owner="http://www.zillow.com/charlestown-boston-ma/fsbo/" overview="http://www.zillow.com/local-info/MA-Boston/Charlestown/r_154235/"> name="Charlestown" type="neighborhood" zindex_value="714,000">> lot_size_sq_ft="100188" use_code="SingleFamily" year_built="1900" zestimate=#<Hashie::Rash amount=#<Hashie::Rash _content_="1273901" currency="USD"> last_updated="07/19/2018" one_week_change=#<Hashie::Rash deprecated="true"> percentile="0" valuation_range=#<Hashie::Rash high=#<Hashie::Rash _content_="2420412" currency="USD"> low=#<Hashie::Rash _content_="764341" currency="USD">> value_change=#<Hashie::Rash _content_="16591" currency="USD" duration="30">> zpid="2126513888">>
+>> response.body.response.results.address
+=> nil
+>> response.body.response.results.result
+=> #<Hashie::Rash address=#<Hashie::Rash city="Boston" latitude="42.375354" longitude="-71.064524" state="MA" street="123 Main St" zipcode="02129"> bathrooms="18.0" bedrooms="9" finished_sq_ft="99999" fip_scounty=nil links=#<Hashie::Rash comparables="http://www.zillow.com/homes/comps/2126513888_zpid/" homedetails="https://www.zillow.com/homedetails/123-Main-St-Boston-MA-02129/2126513888_zpid/" mapthishome="http://www.zillow.com/homes/2126513888_zpid/"> local_real_estate=#<Hashie::Rash region=#<Hashie::Rash id="154235" links=#<Hashie::Rash for_sale="http://www.zillow.com/charlestown-boston-ma/" for_sale_by_owner="http://www.zillow.com/charlestown-boston-ma/fsbo/" overview="http://www.zillow.com/local-info/MA-Boston/Charlestown/r_154235/"> name="Charlestown" type="neighborhood" zindex_value="714,000">> lot_size_sq_ft="100188" use_code="SingleFamily" year_built="1900" zestimate=#<Hashie::Rash amount=#<Hashie::Rash _content_="1273901" currency="USD"> last_updated="07/19/2018" one_week_change=#<Hashie::Rash deprecated="true"> percentile="0" valuation_range=#<Hashie::Rash high=#<Hashie::Rash _content_="2420412" currency="USD"> low=#<Hashie::Rash _content_="764341" currency="USD">> value_change=#<Hashie::Rash _content_="16591" currency="USD" duration="30">> zpid="2126513888">
+>> response.body.response.results.result.address
+=> #<Hashie::Rash city="Boston" latitude="42.375354" longitude="-71.064524" state="MA" street="123 Main St" zipcode="02129">
+>> response = zester.property.deep_search_results('address' => '3127 Fenceline Road', 'citystatezip' => 'Caledonia, WI')
+=> #<Zester::Response:0x00007f81a40e91b0 @body=#<Hashie::Rash message=#<Hashie::Rash code="0" text="Request successfully processed"> request=#<Hashie::Rash address="3127 Fenceline Road" citystatezip="Caledonia, WI"> response=#<Hashie::Rash results=#<Hashie::Rash result=#<Hashie::Rash address=#<Hashie::Rash city="RACINE" latitude="42.757263" longitude="-87.867452" state="WI" street="3127 Fenceline Rd" zipcode="53406"> bathrooms="3.0" bedrooms="4" finished_sq_ft="2462" fip_scounty="55101" links=#<Hashie::Rash comparables="http://www.zillow.com/homes/comps/52254754_zpid/" graphsanddata="http://www.zillow.com/homedetails/3127-Fenceline-Rd-Racine-WI-53406/52254754_zpid/#charts-and-data" homedetails="https://www.zillow.com/homedetails/3127-Fenceline-Rd-Racine-WI-53406/52254754_zpid/" mapthishome="http://www.zillow.com/homes/52254754_zpid/"> local_real_estate=#<Hashie::Rash region=#<Hashie::Rash id="10661" links=#<Hashie::Rash for_sale="http://www.zillow.com/caledonia-wi/" for_sale_by_owner="http://www.zillow.com/caledonia-wi/fsbo/" overview="http://www.zillow.com/local-info/WI-Caledonia/r_10661/"> name="Caledonia" type="city" zindex_value="185,600">> lot_size_sq_ft="44431" tax_assessment="304800.0" tax_assessment_year="2017" use_code="SingleFamily" zestimate=#<Hashie::Rash amount=#<Hashie::Rash _content_="353388" currency="USD"> last_updated="07/19/2018" one_week_change=#<Hashie::Rash deprecated="true"> percentile="0" valuation_range=#<Hashie::Rash high=#<Hashie::Rash _content_="371057" currency="USD"> low=#<Hashie::Rash _content_="335719" currency="USD">> value_change=#<Hashie::Rash _content_="205" currency="USD" duration="30">> zpid="52254754">>> schema_location="http://www.zillow.com/static/xsd/SearchResults.xsd https://www.zillowstatic.com/vstatic/b20c067/static/xsd/SearchResults.xsd">>
+>> response.body.response.results.result.address
+=> #<Hashie::Rash city="RACINE" latitude="42.757263" longitude="-87.867452" state="WI" street="3127 Fenceline Rd" zipcode="53406">
+>> response.body.response.results.result.address.city
+=> "RACINE"
+>> response.body.response.results.result.address.street
+=> "3127 Fenceline Rd"
+>> response.body.response.results.result.address.zipcode
+=> "53406"
