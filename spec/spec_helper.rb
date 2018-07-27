@@ -11,6 +11,14 @@
 # a separate helper file that requires the additional dependencies and performs
 # the additional setup, and require it from the spec files that actually need
 # it.
+
+
+# Only load the gems spec'ed in gemspec
+require 'bundler/setup'
+Bundler.setup
+
+require 'property_transfer' # assure specs to use your current code
+
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
