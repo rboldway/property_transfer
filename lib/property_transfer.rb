@@ -1,4 +1,4 @@
-require "property_transfer/versdocumentn"
+require "property_transfer/version"
 
 module PropertyTransfer
 
@@ -31,12 +31,8 @@ module PropertyTransfer
       @last_line = content
     end
 
-    def seek_content(pattern,document)
-      content = nil
-      document.each_line do |line|
-        break if (content = line.match(pattern))
-      end
-      content
+    def seek_content(pattern)
+      @document.each_line.detect { |line| %r{#{pattern}}.match(line) }
     end
 
     def city(content)
@@ -55,8 +51,6 @@ module PropertyTransfer
     def run
       register(/^([0-9A-Za-z ]+)[,:; ]+\$([0-9,]+)$/, :property)
       register(/^([A-Z a-z-]{2,})$/,:city)
-
-      puts "\nStart of prices: #{seek_content(/Property Purchase Price/, document)}"
 
       # loop thru lines sequentiallly
       document.each_line do |line|
