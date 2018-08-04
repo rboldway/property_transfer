@@ -1,4 +1,5 @@
 require "property_transfer/version"
+require "property_transfer/pattern_action_registry"
 
 module PropertyTransfer
 
