@@ -1,36 +1,24 @@
 require "property_transfer/version"
 require "property_transfer/pattern_action_registry"
 
+require 'forwardable'
+
 module PropertyTransfer
 
-
   class RecordTransfer
+    extend Forwardable
 
-    attr_accessor :input, :document, :registry, :city
+    attr_accessor :input, :document, :city
 
-    def initialize(document)
+    def initialize(document, pattern_matcher = PatternActionRegistry.new)
       @document = document
-      @registry = {}
+      @pattern_matcher = pattern_matcher
       @last_line = nil
     end
 
     Properties = {}
 
-    def register(pattern, action)
-      registry[Regexp.new(pattern)] = action
-    end
-
-    def perform_upon_match(line)
-      content = nil
-      key = nil
-      registry.keys.detect do |k|
-        content = line.match(k)
-        key = k
-        content
-      end
-      send(registry[key], content) if content
-      @last_line = content
-    end
+    def_delegators :@pattern_matcher, :register, :upon_match
 
     def seek_content(pattern)
       @document.each_line.detect { |line| %r{#{pattern}}.match(line) }
@@ -45,8 +33,8 @@ module PropertyTransfer
       @city ||= content.to_s.strip.squeeze(" ")
     end
 
-    def property(property)
-      property = property.to_a.drop(1)
+    def property(content)
+      property = content.to_a.drop(1)
       price = property.pop
       property[0].squeeze(" ")
       property << @city << "WI" << price

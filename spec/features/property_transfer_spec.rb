@@ -22,6 +22,14 @@ RSpec.describe PropertyTransfer do
       expect(@recording.seek_content(expected)).to match /\s*Property Purchase Price\s*/
     end
 
+    example "delegate register method" do
+      expect(respond_to(:register))
+    end
+
+    example "delegate upon_match method" do
+      expect(respond_to(:upon_match))
+    end
+
     example "strip leading and trailing whitespace, squeeze multi-spaces to one and set the city variable" do
       expect(@recording.city(" Van Nuys  ")).to eq "Van Nuys"
     end
@@ -34,7 +42,7 @@ RSpec.describe PropertyTransfer do
       @registry = described_class.new
     end
 
-    example "register a esearch pattern and associated action" do
+    example "register a search pattern and associated action" do
       expect(@registry.register("SS",:action)).to be_a(Hash)
       expect(@registry.register("SS",:action)).to include(/SS/ => :action)
     end
