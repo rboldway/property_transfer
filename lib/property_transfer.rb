@@ -36,6 +36,11 @@ module PropertyTransfer
       @document.each_line.detect { |line| %r{#{pattern}}.match(line) }
     end
 
+    def perform(hash)
+      action = hash.keys.first
+      public_send(action,hash[action])
+    end
+
     def city(content)
       @city ||= content.to_s.strip.squeeze(" ")
     end
@@ -54,7 +59,7 @@ module PropertyTransfer
 
       # loop thru lines sequentiallly
       document.each_line do |line|
-        perform_upon_match(line)
+        perform(upon_match(line))
       end
     end
 
