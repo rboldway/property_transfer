@@ -37,8 +37,7 @@ module PropertyTransfer
     end
 
     def city(content)
-      @city = content[1].to_s.chomp.squeeze(" ")
-      # puts ":city #{@city}"
+      @city ||= content.to_s.strip.squeeze(" ")
     end
 
     def property(property)

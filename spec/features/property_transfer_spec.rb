@@ -22,6 +22,10 @@ RSpec.describe PropertyTransfer do
       expect(@recording.seek_content(expected)).to match /\s*Property Purchase Price\s*/
     end
 
+    example "strip leading and trailing whitespace, squeeze multi-spaces to one and set the city variable" do
+      expect(@recording.city(" Van Nuys  ")).to eq "Van Nuys"
+    end
+
   end
 
   describe PropertyTransfer::PatternActionRegistry do
