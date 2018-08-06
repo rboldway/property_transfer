@@ -9,6 +9,9 @@ module PropertyTransfer
     extend Forwardable
 
     attr_accessor :input, :document, :city
+    def_delegators :@pattern_matcher, :register, :upon_match
+
+    Properties = {}
 
     def initialize(document, pattern_matcher = PatternActionRegistry.new)
       @document = document
@@ -16,13 +19,21 @@ module PropertyTransfer
       @last_line = nil
     end
 
-    Properties = {}
+    def run
+      register(/^([0-9A-Za-z ]+)[,:; ]+\$([0-9,]+)$/, :property)
+      register(/^([A-Z a-z-]{2,})$/,:city)
 
-    def_delegators :@pattern_matcher, :register, :upon_match
+      # loop thru lines sequentiallly
+      document.each_line do |line|
+        perform(upon_match(line))
+      end
+    end
 
     def seek_content(pattern)
       @document.each_line.detect { |line| %r{#{pattern}}.match(line) }
     end
+
+    private
 
     def perform(hash)
       action = hash.keys.first
@@ -39,16 +50,6 @@ module PropertyTransfer
       property[0].squeeze(" ")
       property << @city << "WI" << price
       puts property.join(", ")
-    end
-
-    def run
-      register(/^([0-9A-Za-z ]+)[,:; ]+\$([0-9,]+)$/, :property)
-      register(/^([A-Z a-z-]{2,})$/,:city)
-
-      # loop thru lines sequentiallly
-      document.each_line do |line|
-        perform(upon_match(line))
-      end
     end
 
   end
