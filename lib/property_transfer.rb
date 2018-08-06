@@ -37,14 +37,14 @@ module PropertyTransfer
 
     def perform(hash)
       action = hash.keys.first
-      public_send(action,hash[action])
+      public_send(action,"#{hash[action]}=")
     end
 
-    def city(content)
+    def city=(content)
       @city ||= content.to_s.strip.squeeze(" ")
     end
 
-    def property(content)
+    def property=(content)
       property = content.to_a.drop(1)
       price = property.pop
       property[0].squeeze(" ")
