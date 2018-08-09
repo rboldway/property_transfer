@@ -48,8 +48,8 @@ RSpec.describe PropertyTransfer do
     end
 
     example "upon match from a line, return the match content" do
-      expect(@registry.register(/(country)/,:doit)).to include( {/(country)/ => :doit} )
-      expect(@registry.upon_match("my country is")).to include( {:doit => "country"} )
+      expect(@registry.register(/(?<city>country)/,:doit)).to include( {/(?<city>country)/ => :doit} )
+      expect(@registry.upon_match("my country is")).to include( {"city" => "country", :action => :doit} )
     end
 
   end
