@@ -17,12 +17,11 @@ module PropertyTransfer
       @document = document
       @pattern_matcher = pattern_matcher
       @last_line = nil
+      register( {/^(?<address>[0-9A-Za-z ]+)[,:; ]+\$(?<price>[0-9,]+)$/ => :property} )
+      register( {/^(?<city>[A-Z a-z-]{2,})$/ => :city} )
     end
 
     def run
-      register(/^(?<address>[0-9A-Za-z ]+)[,:; ]+\$(?<price>[0-9,]+)$/, :property)
-      register(/^(?<city>[A-Z a-z-]{2,})$/,:city)
-
       # loop thru lines sequentiallly
       document.each_line do |line|
         perform(upon_match(line))

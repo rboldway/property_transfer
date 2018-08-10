@@ -39,17 +39,16 @@ RSpec.describe PropertyTransfer do
   describe PropertyTransfer::PatternActionRegistry do
 
     before(:example) do
-      @registry = described_class.new
+      @reg = described_class.new
     end
 
     example "register a search pattern and associated action" do
-      expect(@registry.register("SS",:action)).to be_a(Hash)
-      expect(@registry.register("SS",:action)).to include(/SS/ => :action)
+      expect(@reg.register({/SS/ => :action})).to include(/SS/ => :action)
     end
 
     example "upon match from a line, return the match content" do
-      expect(@registry.register(/(?<city>country)/,:doit)).to include( {/(?<city>country)/ => :doit} )
-      expect(@registry.upon_match("my country is")).to include( {"city" => "country", :action => :doit} )
+      expect(@reg.register( {/(?<city>country)/ => :doit})).to include( {/(?<city>country)/ => :doit} )
+      expect(@reg.upon_match("my country is")).to include( {"city" => "country", :action => :doit} )
     end
 
   end

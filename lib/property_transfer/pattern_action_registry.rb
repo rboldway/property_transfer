@@ -6,11 +6,9 @@ module PropertyTransfer
       @registry = {}
     end
 
-    def register(pattern, action)
-      # TODO: require that pattern has named captures
-      key = Regexp.new(pattern)
-      @registry[key] = action
-      {key =>  action}
+    def register(pattern_action)
+      @registry.merge!(pattern_action)
+      @registry.slice(pattern_action.keys.first)
     end
 
     def upon_match(line)
