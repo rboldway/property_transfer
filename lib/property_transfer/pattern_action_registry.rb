@@ -20,7 +20,7 @@ module PropertyTransfer
         matched = pat.match(line)
         pattern = pat
       end
-      matched.named_captures.merge({action: @registry[pattern]})
+      matched&.named_captures&.merge({action: @registry[pattern]})
     end
 
   end
