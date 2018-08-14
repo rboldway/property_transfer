@@ -4,7 +4,7 @@ RSpec.describe PropertyTransfer do
   describe PropertyTransfer::RecordTransfer do
 
     def make_file
-      str = "    Property Purchase Price\n"
+      str = "    Property Purchase Price\nAnywhere\n123 Elm Street $123,000\n444 Emerald Blvd $222,222\nNowhere\n333 Heap Court $999,999\n"
       StringIO.new str
     end
 
