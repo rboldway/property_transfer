@@ -1,9 +1,10 @@
 module PropertyTransfer
 
   class PatternActionRegistry
+    require 'symbolized'
 
     def initialize
-      @registry = {}
+      @registry = {}.to_symbolized_hash
     end
 
     def register(pattern_action)
@@ -15,10 +16,11 @@ module PropertyTransfer
       matched = nil
       pattern = nil
       @registry.keys.detect do |pat|
-        matched = pat.match(line)
         pattern = pat
+        matched = pat.match(line)
+        !matched.nil?
       end
-      matched&.named_captures&.merge({action: @registry[pattern]})
+      matched&.named_captures&.merge({action: @registry[pattern]}).to_symbolized_hash
     end
 
   end
