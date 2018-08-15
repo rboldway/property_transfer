@@ -33,7 +33,7 @@ module PropertyTransfer
     def_delegators :@pattern_matcher, :register, :upon_match
     
     def seek_content(pattern)
-      @document.each_line.detect { |line| %r{#{pattern}}.match(line) }
+      document.each_line.detect { |line| Regexp.new(pattern).match(line) }
     end
 
     private
