@@ -36,22 +36,22 @@ module PropertyTransfer
       document.each_line.detect { |line| Regexp.new(pattern).match(line) }
     end
 
-    private
-
-    def perform(match_hash)
-      action = match_hash[:action]
-      public_send("#{match_hash[action]}=", match_hash)
+    def perform(matched)
+      # TODO: great error checkpoint
+      return unless matched
+      property.keep_if {|k,_| [:state, :city].include? k }
+      send("#{matched[:action]}=", property.merge!(matched))
     end
 
-    def city=(match_hash)
-      @city ||= match_hash[:city].to_s.strip.squeeze(" ")
+    def city=(matched)
+      city = matched[:city].to_s.strip.squeeze(" ")
+      property.merge!({:city => city})
     end
 
-    def property=(match_hash)
-      property = match_hash[:property]
-      property[0].squeeze(" ")
-      property << @city << "WI" << price
-      puts property.join(", ")
+    def property=(matched)
+      property.merge!(matched)
+      Properties << property
+      puts property
     end
 
   end
