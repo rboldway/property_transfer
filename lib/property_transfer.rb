@@ -20,6 +20,7 @@ module PropertyTransfer
     end
 
     def run
+      seek_content(/\s*Property Purchase Price\s*/)
       # loop thru lines sequentiallly
       document.each_line do |line|
         perform(upon_match(line))
