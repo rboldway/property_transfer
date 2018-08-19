@@ -1,26 +1,8 @@
 require 'property_transfer'
 
 RSpec.describe PropertyTransfer do
+
   describe PropertyTransfer::RecordTransfer do
-
-    def make_file
-      str = "    Property Purchase Price\nAnywhere\n123 Elm Street $123,000\n444 Emerald Blvd $222,222\nNowhere\n333 Heap Court $999,999\n"
-      StringIO.new str
-    end
-
-    before(:example) do
-      @document = make_file
-      @recording = described_class.new @document
-    end
-
-    example "document is a StringIO object" do
-      expect(@document).to be_a StringIO
-    end
-
-    example "seek a position into file" do
-      expected = "Property Purchase Price"
-      expect(@recording.seek_content(expected)).to match /\s*Property Purchase Price\s*/
-    end
 
     example "delegate register method" do
       expect(respond_to(:register))
@@ -30,8 +12,21 @@ RSpec.describe PropertyTransfer do
       expect(respond_to(:upon_match))
     end
 
-    example "strip leading and trailing whitespace, squeeze multi-spaces to one and set the city variable" do
-      expect(@recording.city(" Van Nuys  ")).to eq "Van Nuys"
+  end
+
+
+  describe PropertyTransfer::RecordTransfer do
+
+   example "transform input to output" do
+      allow($stdin)
+          .to receive(:gets)
+          .and_return("  Property Purchase Price", "Anywhere", "123 Elm Street $123,000", "444 Emerald Blvd $222,222", "Nowhere", "333 Heap Court $999,999", nil)
+
+      expect(STDOUT).to receive(:puts).with( {:state=>"WI", :city=>"Anywhere", :address=>"123 Elm Street", :price=>"123,000"} )
+      expect(STDOUT).to receive(:puts).with( {:state=>"WI", :city=>"Anywhere", :address=>"444 Emerald Blvd", :price=>"222,222"})
+      expect(STDOUT).to receive(:puts).with( {:state=>"WI", :city=>"Nowhere", :address=>"333 Heap Court", :price=>"999,999"} )
+
+      described_class.new.run
     end
 
   end
