@@ -49,7 +49,7 @@ module PropertyTransfer
 
     def property=(matched)
       property.merge!(matched)
-      Properties << property
+      property.delete(:action)
       puts property
     end
 
