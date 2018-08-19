@@ -8,12 +8,9 @@ module PropertyTransfer
   class RecordTransfer
     extend Forwardable
 
-    Properties = []
-
-    def initialize(document, pattern_matcher = PatternActionRegistry.new)
-      @document = document
+    def initialize(input = $stdin, pattern_matcher = PatternActionRegistry.new)
+      @input = input
       @pattern_matcher = pattern_matcher
-      @last_line = nil
       register( {/^(?<address>[0-9A-Za-z ]+)[,:; ]+\$(?<price>[0-9,]+)$/ => :property} )
       register( {/^(?<city>[A-Z a-z-]{2,})$/ => :city} )
       @property = {:state => "WI"}
@@ -21,19 +18,21 @@ module PropertyTransfer
 
     def run
       seek_content(/\s*Property Purchase Price\s*/)
-      # loop thru lines sequentiallly
-      document.each_line do |line|
-        perform(upon_match(line))
+      while line = input.gets
+        perform(upon_match(line.chomp))
       end
     end
 
    private
 
-    attr_accessor :document, :city, :property
+    attr_reader :input
+    attr_accessor :property
     def_delegators :@pattern_matcher, :register, :upon_match
-    
+
     def seek_content(pattern)
-      document.each_line.detect { |line| Regexp.new(pattern).match(line) }
+      while line = input.gets
+        break if Regexp.new(pattern).match(line.chomp)
+      end
     end
 
     def perform(matched)
