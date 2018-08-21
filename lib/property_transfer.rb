@@ -19,7 +19,7 @@ module PropertyTransfer
     def run
       seek = seek_content(/\s*Property Purchase Price\s*/)
       while line = ARGF.gets
-        perform(line)
+        perform(line) unless line.chomp.empty?
       end
     end
 
