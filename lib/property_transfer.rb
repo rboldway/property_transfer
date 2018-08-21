@@ -8,7 +8,8 @@ module PropertyTransfer
   class RecordTransfer
     extend Forwardable
 
-    def initialize(pattern_matcher = PatternActionRegistry.new)
+    def initialize(errors_only = false, pattern_matcher = PatternActionRegistry.new)
+      @errors_only = errors_only
       @pattern_matcher = pattern_matcher
       register( {/^(?<address>[0-9A-Za-z,-\. ]+)[:; ]+\$(?<price>[0-9,]+)$/ => :property} )
       register( {/^(?<city>[A-Z a-z-]{2,})$/ => :city} )
@@ -54,7 +55,7 @@ module PropertyTransfer
     def property=(matched)
       property.merge!(matched)
       property.delete(:action)
-      puts property
+      puts property unless @errors_only
     end
 
   end

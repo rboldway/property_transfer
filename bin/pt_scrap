@@ -2,6 +2,6 @@
 #
 require "property_transfer"
 
-puts ARGF.filename
-scraper = PropertyTransfer::RecordTransfer.new
+option = ARGF.argv.delete("--errors")
+scraper = PropertyTransfer::RecordTransfer.new(!option.nil?)
 scraper.run
