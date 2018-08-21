@@ -10,7 +10,7 @@ module PropertyTransfer
 
     def initialize(pattern_matcher = PatternActionRegistry.new)
       @pattern_matcher = pattern_matcher
-      register( {/^(?<address>[0-9A-Za-z ]+)[,:; ]+\$(?<price>[0-9,]+)$/ => :property} )
+      register( {/^(?<address>[0-9A-Za-z,-\. ]+)[:; ]+\$(?<price>[0-9,]+)$/ => :property} )
       register( {/^(?<city>[A-Z a-z-]{2,})$/ => :city} )
       @property = {:state => "WI"}
     end
