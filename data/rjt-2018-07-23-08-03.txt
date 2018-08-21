@@ -48,8 +48,7 @@ Caledonia
 5412 Langdale drive;$227,500
 4420 Ellen drive;$215,000
 12802 Sunflower drive;$209,900
-2 9 3 5 C r e s t v i e w P a r k
-drive;$190,000
+2935 Crest view Park drive;$190,000
 6147 douglas ave.;$190,000
 3019 Santa Fe trail;$185,000
 1445 4 Mile Road;$182,000
@@ -71,8 +70,7 @@ Mount Pleasant
 8738 Shady Oak trail;$333,000
 4310 Hideaway Hollow;$327,000
 707 Hunter drive;$325,000
-2350 West Circle drive, unit
-42;$321,000
+2350 West Circle drive, unit 42;$321,000
 9233 dahlia Lane;$305,000
 2708 Red Fawn Court;$299,900
 6527 Kingsview drive;$279,000
@@ -82,30 +80,23 @@ Mount Pleasant
 715 apollo drive;$230,000
 3832 Sherrie Lane;$215,000
 1637 Raintree Lane;$185,000
-1017 Hastings Court, unit
-201;$180,000
+1017 Hastings Court, unit 201;$180,000
 434 S. Fancher Road;$175,000
 3040 Meachem Road;$174,000
 6405 Larchmont drive;$170,000
 532 S. green Bay Road;$167,500
 1138 Stratford Court;$166,000
-1041 Prairie drive, unit
-203;$138,500
+1041 Prairie drive, unit 203;$138,500
 3154 Wood Road, unit 1;$124,000
-5 5 0 2 C a r r i a g e H i l l s
-drive;$120,000
+5502 Carriage Hills drive;$120,000
 3921 Marion ave.;$105,000
-6641 Mariner drive, unit no.
-7;$94,500
+6641 Mariner drive, unit no.7;$94,500
 2359 Kae Court;$90,000
 4726 Spring St.;$89,500
-6740 Mariner drive, unit
-204u;$88,000
-1521 Windsor Way, unit
-1u;$73,000
+6740 Mariner drive, unit 204u;$88,000
+1521 Windsor Way, unit 1u;$73,000
 Norway
-2 4 3 0 9 n . W i n d L a k e
-Road;$410,000
+24309 n . Wind Lake Road;$410,000
 3928 n. Britton Road;$241,500
 27307 Pioneer Road;$207,000
 26519 Oakridge drive;$179,000
@@ -121,8 +112,7 @@ Racine
 3715 Haven ave.;$164,000
 1005 Ostergaard ave.;$161,000
 929 Virginia St.;$160,000
-35 Harborview drive, no.
-216;$154,900
+35 Harborview drive, no. 216;$154,900
 1617 goold St.;$150,000
 730 Park ave.;$149,900
 4130 Saint Clair St.;$145,000
@@ -166,8 +156,7 @@ Racine
 2021 taylor ave.;$85,000
 2704 Rapids drive;$84,000
 1413 grand ave.;$80,000
-3601 Saint andrews Court, unit
-101;$79,900
+3601 Saint andrews Court, unit 101;$79,900
 2222 Prospect St.;$70,000
 829 Wisconsin ave.;$70,000
 2316 Monroe ave.;$68,900
@@ -213,17 +202,14 @@ Waterford
 300 E. Main St.;$230,000
 28814 Irma Court;$200,000
 404 Park Place Court;$190,000
-300 Foxwood drive, no.
-157;$145,000
-300 Foxwood drive, no.
-160;$120,000
+300 Foxwood drive, no. 157;$145,000
+300 Foxwood drive, no. 160;$120,000
 Wind Point
 5360 Wind Point Road;$320,000
 5 Sandalwood Court;$299,900
 31 Lakewood drive;$270,000
 Yorkville
 5203 Crystal Lane;$425,000
-1 7 6 1 0 O l d y o r k v i l l e
-Road;$360,000
+17610O ld yorkville Road;$360,000
 2821 Raymond ave.;$324,000
 16904 County Line Road;$135,000
