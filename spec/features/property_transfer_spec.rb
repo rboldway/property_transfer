@@ -17,8 +17,8 @@ RSpec.describe PropertyTransfer do
 
   describe PropertyTransfer::RecordTransfer do
 
-   example "transform input to output" do
-      allow($stdin)
+    example "transform input to output" do
+      allow(ARGF)
           .to receive(:gets)
           .and_return("  Property Purchase Price", "Anywhere", "123 Elm Street $123,000", "444 Emerald Blvd $222,222", "Nowhere", "333 Heap Court $999,999", nil)
 

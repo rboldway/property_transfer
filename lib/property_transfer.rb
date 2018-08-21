@@ -8,8 +8,7 @@ module PropertyTransfer
   class RecordTransfer
     extend Forwardable
 
-    def initialize(input = $stdin, pattern_matcher = PatternActionRegistry.new)
-      @input = input
+    def initialize(pattern_matcher = PatternActionRegistry.new)
       @pattern_matcher = pattern_matcher
       register( {/^(?<address>[0-9A-Za-z ]+)[,:; ]+\$(?<price>[0-9,]+)$/ => :property} )
       register( {/^(?<city>[A-Z a-z-]{2,})$/ => :city} )
@@ -17,9 +16,9 @@ module PropertyTransfer
     end
 
     def run
-      seek_content(/\s*Property Purchase Price\s*/)
-      while line = input.gets
-        perform(upon_match(line.chomp))
+      seek = seek_content(/\s*Property Purchase Price\s*/)
+      while line = ARGF.gets
+        perform(line)
       end
     end
 
@@ -30,16 +29,21 @@ module PropertyTransfer
     def_delegators :@pattern_matcher, :register, :upon_match
 
     def seek_content(pattern)
-      while line = input.gets
-        break if Regexp.new(pattern).match(line.chomp)
+      exp = Regexp.new(pattern)
+      while line = ARGF.gets
+        break if exp.match(line.chomp)
       end
+      line
     end
 
-    def perform(matched)
-      # TODO: great error checkpoint
-      return unless matched
+    def perform(line)
+      matched = upon_match(line)
       property.keep_if {|k,_| [:state, :city].include? k }
-      send("#{matched[:action]}=", property.merge!(matched))
+      if matched
+        send("#{matched[:action]}=", property.merge!(matched))
+      else
+        puts property.merge!( {:error => line} )
+      end
     end
 
     def city=(matched)
