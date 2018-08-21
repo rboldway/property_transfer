@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+#
+require "property_transfer"
+
+puts ARGF.filename
+scraper = PropertyTransfer::RecordTransfer.new
+scraper.run
