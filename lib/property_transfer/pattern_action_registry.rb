@@ -20,7 +20,7 @@ module PropertyTransfer
         matched = pat.match(line)
         !matched.nil?
       end
-      matched&.named_captures&.merge!({action: @registry[pattern]}).to_symbolized_hash
+      matched&.named_captures&.merge!({action: @registry[pattern]})&.to_symbolized_hash
     end
 
   end
